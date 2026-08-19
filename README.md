@@ -1,16 +1,17 @@
-# React + Vite
+# Modem
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A texting app that behaves like a 1990s dial-up modem instead of an instant messenger.
 
-Currently, two official plugins are available:
+Built while revising for a DSP exam — wanted to actually see the concepts (FFT, FSK encoding, signal noise) instead of just doing them on paper.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How it works
+- Messages are encoded as audio using FSK (frequency-shift keying) — the same idea old modems used, where each bit is one of two tones (1200Hz / 2200Hz)
+- Sent at 300 baud (deliberately slow)
+- A live spectrogram shows the real FFT of the outgoing audio while it transmits
+- Channel quality is randomized per message — poor conditions can corrupt characters, and there's a small chance the "carrier" is lost and the message never arrives
 
-## React Compiler
+## Stack
+React + Web Audio API, no backend.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Note
+This is a prototype/demo, not a production messaging app — no real network connection between users.
